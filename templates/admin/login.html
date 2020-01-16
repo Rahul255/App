@@ -1,0 +1,54 @@
+{% extends 'admin/login.html' %}
+{% load static %}
+{% block branding %}
+<style>
+body.login {
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQd6F2SPNbkU0jtwPMl7ftlb8KGt20NNklKyCxd2Hq2GICmwMHh');
+    background-size: cover;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+ }
+.login #header {
+    height: auto;
+    padding: 1rem;
+    background: #222;
+}
+.login #branding { width: 100%; }
+.login .head { display: flex; align-items: center; justify-content: center; }
+.login .head h1 {
+    font-size: calc(1rem + 2vw)!important;
+    font-weight: 900;
+}
+.login #container {
+    background: #fff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 2px 3px 5px #333;
+    overflow: hidden;
+    width: 50vw;
+    margin: 0;
+    max-width: 400px;
+}
+.login .submit-row
+{
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+
+.login .submit-row input
+{
+    background: #ffc107;
+    color: black;
+    display: block;
+    width: 100%;
+}
+</style>
+    <div class="head">
+        <h1>Temple App</h1>
+    </div>
+{% endblock %}
+{% block body %}
+{% endblock %}
