@@ -56,7 +56,7 @@ class Print(models.Model):
     name = models.CharField(max_length=200)
     age = models.CharField(max_length=200)
     poojano = models.CharField(max_length=200, null=True, blank=True, unique=True)
-    pooja = models.CharField(max_length=200)
+    pooja = models.ForeignKey(Pooja, on_delete=models.CASCADE,)
     amount = models.CharField(max_length=200)
     result = models.CharField(max_length=200)
 
