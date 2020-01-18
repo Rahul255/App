@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from payment.inlines import OPInline
-from payment.models import Order, OrderProduct, SumValue
+from payment.models import Order, OrderProduct
 
 
 @admin.register(Order)
@@ -16,6 +16,4 @@ class OrderProductAdmin(admin.ModelAdmin):
     list_display = ('pooja', 'qty', 'price', 'date')
 
 
-@admin.register(SumValue)
-class SumValueAdmin(admin.ModelAdmin):
-    pass
+
