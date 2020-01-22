@@ -27,4 +27,4 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(OrderProduct)
 class OrderProductAdmin(admin.ModelAdmin):
-    list_display = ('pooja', 'qty', 'price', 'date')
+    list_display = ('pooja', 'qty', 'price', 'date', )

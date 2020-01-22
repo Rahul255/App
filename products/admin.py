@@ -13,6 +13,7 @@ class PoojaAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     search_fields = ('pooja', 'comment')
 
+
 @admin.register(Print)
 class PrintAdmin(admin.ModelAdmin):
     list_display = ()

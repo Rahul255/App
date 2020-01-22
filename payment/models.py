@@ -58,4 +58,4 @@ class OrderProduct(models.Model):
         verbose_name = "Order Product"
 
     def __str__(self):
-        return str(self.pooja.name + ' - ' + self.order.name)
+        return str(self.pooja.pooja + ' - ' + self.order.name)
