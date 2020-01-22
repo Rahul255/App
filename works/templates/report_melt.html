@@ -3,8 +3,8 @@
 {% block title %}Report | Melt{% endblock %}
 
 {% block content %}
-{% load staticfiles %}
-{% load crispy_forms_tags %}
+{% load static %}
+
 <div class="row">
     <div class="col-lg-3 col-md-3" style="margin-top: 2%">
         {% include 'admin_sidepanel.html' %}
@@ -16,7 +16,7 @@
             {% csrf_token %}
             <div class="container">
                 {% csrf_token %}
-                {{ form|crispy }}  
+
                 <div>
                     <button type="submit" id="export" name="export" class="btn btn-success" style="margin-top: 2%; border-radius: 0">Export to Excel</button>
                 </div>

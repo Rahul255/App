@@ -8,7 +8,10 @@ from django.http import JsonResponse, HttpResponse
 from io import BytesIO
 from django.template.loader import get_template
 from xhtml2pdf import pisa
-import time, json, calendar, inflect
+import time
+import json
+import calendar
+import inflect
 from django.db.models import Q
 from xlsxwriter.workbook import Workbook
 from django.conf import settings
