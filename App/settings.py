@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-
 try:
     from App.server_settings import *
 except ImportError:
@@ -20,7 +19,6 @@ except ImportError:
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -38,6 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_object_actions',
+    # list 3rd party plugin
+    'graphene_django',
+
+    # Our own apps
     'products',
     'payment',
     'works',
@@ -74,10 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'App.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 
 
 # Password validation
@@ -98,7 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -112,8 +111,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GRAPHENE = {
+    'SCHEMA': 'App.schema.schema'  # Where your Graphene schema lives
+}
