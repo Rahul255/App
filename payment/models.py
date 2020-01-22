@@ -11,39 +11,51 @@ from django.db.models import F
 
 from products.models import Pooja
 
+Nakshatram = [
+    ('ch', 'Chathayam')
+]
+
 
 class Order(models.Model):
-    name = models.CharField(max_length=150, null=True, blank=True)
+    # auto generated
     orderID = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
-    issuer = models.CharField(max_length=150, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now=True)
-    amount = models.PositiveIntegerField()
+    # added on save function
+    issuer = models.ForeignKey(User, on_delete=models.PROTECT, editable=False)
+
+    name = models.CharField(
+        max_length=150,
+        null=True,
+        blank=True,
+        verbose_name='Name of Person',
+        help_text='Please enter the person for whom the pooja is being booked',
+    )
+    nakshatram = models.CharField(
+        max_length=2,
+        null=True,
+        blank=True,
+        choices=Nakshatram,
+        verbose_name='Select Nakshtram',
+    )
     products = models.ManyToManyField(Pooja, through='OrderProduct')
-    total = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    lastEditTime = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return str(self.name)
 
-    def save_model(self, request, obj, form, change):
-        obj.total = request.user
-        obj.lastEditTime = datetime.now()
-        for product in OrderProduct.objects.filter(order=Order):
-            cost = cost + product.price * product.qty
-            obj.total = cost
-        super().save_model(request, obj, form, change)
+    # intermediate model connecting products & order
 
 
 class OrderProduct(models.Model):
-    pooja = models.ForeignKey(Pooja, on_delete=models.PROTECT)
-    qty = models.PositiveIntegerField()
-    price = models.PositiveIntegerField()
-    date = models.DateTimeField(null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    pooja = models.ForeignKey(Pooja, on_delete=models.PROTECT)
+
+    price = models.PositiveIntegerField(null=True, blank=True, editable=False)
+    date = models.DateTimeField(null=True, blank=True, verbose_name='Booking Date')
+    qty = models.PositiveIntegerField()
 
     class Meta:
         verbose_name_plural = "Order Products"
         verbose_name = "Order Product"
 
     def __str__(self):
-        return str(self.pooja.pooja + ' - ' + self.order.name)
+        return str(self.pooja.name + ' - ' + self.order.name)

@@ -6,7 +6,7 @@ from .models import Pooja, Comment, Print
 
 @admin.register(Pooja)
 class PoojaAdmin(admin.ModelAdmin):
-    list_display = ('pooja', 'amount', 'god', 'date')
+    list_display = ('pooja', 'price', 'god', 'date')
 
 
 @admin.register(Comment)

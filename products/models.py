@@ -16,7 +16,7 @@ def _(param):
 
 class Pooja(models.Model):
     pooja = models.CharField(max_length=255)
-    amount = models.CharField(max_length=255)
+    price = models.CharField(max_length=255)
     # amount=models.CharField(max_length=255)
     god = models.CharField(_('God'), max_length=255, choices=LIST_OF_GOD, blank=False, )
     date = models.DateTimeField(auto_now_add=True)
