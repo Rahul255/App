@@ -27,4 +27,12 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(OrderProduct)
 class OrderProductAdmin(admin.ModelAdmin):
-    list_display = ('pooja', 'qty', 'price', 'date', )
+    list_display = ('pooja', 'qty', 'price', 'date',)
+
+    def save_formset(self, request, form, formset, change):
+        # instances = formset.save(commit=False)
+        price = 0
+        for instance in OrderProductAdmin:
+            instance.price = instance.pooja.price * instance.qty
+            instance.save()
+        formset.save_m2m()
